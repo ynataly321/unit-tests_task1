@@ -1,0 +1,10 @@
+name: CI Pipeline
+on: [push] # Запуск при push в репозиторий
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # Клонирует репозиторий
+      - name: Run a script
+        run: echo "Hello, GitHub Actions!"

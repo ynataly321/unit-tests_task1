@@ -3,7 +3,7 @@ import { healthDefine } from "../healthStatus";
 test ('healthy', () => {
     const character = {name: 'Маг', health: 90};
     const healthStatus = healthDefine(character);
-    expect (healthStatus).toBe ('health');
+    expect (healthStatus).toBe ('healthy');
 })
 
 test ('wounded', () => {

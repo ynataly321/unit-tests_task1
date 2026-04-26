@@ -1,16 +1,20 @@
 name: CI Pipeline
 
-on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: 'Your name'
-        required: true
+on: [push] # Запуск при push в main
 
 jobs:
-  build:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # Клонирует репозиторий
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    needs: test # Ждет завершения job "test"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run a script
-        run: echo "Hello, ${{ github.event.inputs.name }}!"
+      - run: echo "Deploying to production..."
